@@ -4,6 +4,7 @@ specifiers:
   autoprefixer: ^10.4.7
   eslint: 8.19.0
   eslint-config-next: 12.2.2
+  ka-table: ^7.3.0
   next: 12.2.2
   postcss: ^8.4.14
   react: 18.2.0
@@ -13,6 +14,7 @@ specifiers:
 
 dependencies:
   autoprefixer: 10.4.7_postcss@8.4.14
+  ka-table: 7.3.0_react@18.2.0
   next: 12.2.2_biqbaboplfbrettd7655fr4n2y
   postcss: 8.4.14
   react: 18.2.0
@@ -1342,6 +1344,14 @@ packages:
       array-includes: 3.1.5
       object.assign: 4.1.2
     dev: true
+
+  /ka-table/7.3.0_react@18.2.0:
+    resolution: {integrity: sha512-cDIsZSDI8B2W9sJQl5hgtoCQsJvUSlxj2LTk8SaSYGdMse3ToRC8LoC27QqbRzy7x4n92yV4/wzrTesGguNlqA==}
+    peerDependencies:
+      react: ^16.8.3 || ^17.0.0-0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /language-subtag-registry/0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}

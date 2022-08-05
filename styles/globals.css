@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .text-gradient {
+        @apply bg-gradient-to-r from-secondary-500 to-accent-500 bg-clip-text text-transparent decoration-transparent;
+    }
+}
+
+
+/* Table Stuff */
+table, td {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    padding: 15px;
+}
+table {
+    border: 2px solid;
+}
+th {
+    padding: 5px 15px;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+}
+th, td {
+    align-items: center;
+    justify-content: center;
+    border-left: 1px groove;
+    border-right: 1px groove;
+}
