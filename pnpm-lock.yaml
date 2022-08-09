@@ -5,6 +5,7 @@ specifiers:
   eslint: 8.19.0
   eslint-config-next: 12.2.2
   ka-table: ^7.3.0
+  localstorage-polyfill: ^1.0.1
   next: 12.2.2
   postcss: ^8.4.14
   react: 18.2.0
@@ -15,6 +16,7 @@ specifiers:
 dependencies:
   autoprefixer: 10.4.7_postcss@8.4.14
   ka-table: 7.3.0_react@18.2.0
+  localstorage-polyfill: 1.0.1
   next: 12.2.2_biqbaboplfbrettd7655fr4n2y
   postcss: 8.4.14
   react: 18.2.0
@@ -1374,6 +1376,11 @@ packages:
   /lilconfig/2.0.6:
     resolution: {integrity: sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==}
     engines: {node: '>=10'}
+    dev: false
+
+  /localstorage-polyfill/1.0.1:
+    resolution: {integrity: sha512-m4iHVZxFH5734oQcPKU08025gIz2+4bjWR9lulP8ZYxEJR0BpA0w32oJmkzh8y3UI9ci7xCBehQDc3oA1X+VHw==}
+    engines: {node: '>=6'}
     dev: false
 
   /locate-path/2.0.0:

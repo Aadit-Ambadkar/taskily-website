@@ -14,7 +14,7 @@ const cyellow = {
 
 const cred = {
   200: '#edbfbf',
-  300: '#34a0a0',
+  300: '#e4a0a0',
   400: '#db8080',
   500: '#d05a5a',
   600: '#c94040',

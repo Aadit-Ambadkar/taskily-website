@@ -9,9 +9,9 @@ import NonSSRWrapper from "../components/NoSSR";
 
 
 const dataArray = [{
-    column1: `Start Planning!`,
-    column2: `7:00`,
-    column3: `7:05`,
+    taskName: `Start Planning!`,
+    startTime: `7:00`,
+    endTime: `7:05`,
     id: 0,
   }];
 
@@ -23,9 +23,9 @@ const generateNewId = () => {
 
 const tablePropsInit = {
   columns: [
-    { key: 'column1', title: 'Date', dataType: DataType.String },
-    { key: 'column2', title: 'Start Time', dataType: DataType.String },
-    { key: 'column3', title: 'End Time', dataType: DataType.String },
+    { key: 'taskName', title: 'Date', dataType: DataType.String },
+    { key: 'startTime', title: 'Start Time', dataType: DataType.String },
+    { key: 'endTime', title: 'End Time', dataType: DataType.String },
     {
       key: 'insertRowBeforeColumn', title: 'Insert Time Before'
     },
@@ -44,7 +44,6 @@ const tablePropsInit = {
 };
 
 
-
 const AddButton = ({
   dispatch,
 }) => {
@@ -59,9 +58,9 @@ const AddButton = ({
           const id = generateNewId();
           const newRow = {
             id,
-            column1: `Task`,
-            column2: `Time`,
-            column3: `Time`
+            taskName: `Task`,
+            startTime: `Time`,
+            endTime: `Time`
           };
           dispatch(
             insertRow(newRow, {
@@ -109,9 +108,9 @@ const New = () => {
                           const id = generateNewId();
                           const newRow = {
                             id,
-                            column1: `Task`,
-                            column2: `Time`,
-                            column3: `Time`
+                            taskName: `Task`,
+                            startTime: `Time`,
+                            endTime: `Time`
                           };
                           dispatch(
                             insertRow(newRow, { rowKeyValue: props.rowKeyValue })
@@ -130,9 +129,9 @@ const New = () => {
                           const id = generateNewId();
                           const newRow = {
                             id,
-                            column1: `Task`,
-                            column2: `Time`,
-                            column3: `Time`
+                            taskName: `Task`,
+                            startTime: `Time`,
+                            endTime: `Time`
                           };
                           dispatch(
                             insertRow(newRow, {
@@ -167,9 +166,19 @@ const New = () => {
       </div>
       <footer>
         <div className="mt-16 flex flex-col items-center">
-          <div className="className='bg-transparent hover:bg-accent-700 text-accent-800 font-semibold hover:text-white py-2 px-4 border border-accent-700 hover:border-transparent rounded duration-200'">
-            SAVE
-          </div>
+          <button onClick={() => {
+            // alert(JSON.stringify(tableProps.data))
+            const requestOptions = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(tableProps.data)
+            }
+            fetch('/api/server', requestOptions)
+          }}>
+            <div className="className='bg-transparent hover:bg-accent-700 text-accent-800 font-semibold hover:text-white py-2 px-4 border border-accent-700 hover:border-transparent rounded duration-200'">
+              SAVE
+            </div>
+          </button>
         </div>
       </footer>
     </NonSSRWrapper>
