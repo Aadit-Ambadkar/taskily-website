@@ -8,7 +8,7 @@ export default function Home() {
           <Logo />
         </div>
         <div className="h-1/5 bg-primary text-center">
-          <h1 className="text-5xl font-bold text-gradient hover:text-6xl duration-200">
+          <h1 className="text-5xl mb-1 font-bold text-gradient duration-200">
             taskily
           </h1>
           <p className="max-w-lg text-xl text-primary-700 duration-200">

@@ -12,23 +12,38 @@ export default function handler(req, res) {
             let dObj = JSON.parse(global.localStorage['dataObj']);
 
             dObj[timeHash] = {'date': (new Date()).toJSON().slice(0,10).replace(/-/g,'/'), 'body': req.body};
-            global.localStorage['dataObj'] = JSON.stringify(dObj)
+            global.localStorage['dataObj'] = JSON.stringify(dObj);
 
-            res.status(200).end()
+            res.status(200).json(JSON.stringify(timeHash)).end();
         } else if (req.method == 'GET') {
             if (global.localStorage['dataObj'] === undefined) {
-                res.status(404).end()
+                res.status(404).end();
             }
-            res.status(200).json(global.localStorage['dataObj']).end()
+            res.status(200).json(global.localStorage['dataObj']).end();
+            
         } else if (req.method == 'PURGE') {
             global.localStorage.clear()
             res.status(200).end()
-        } else if (req.method == 'VIEW') {
+        } else if (req.method == 'PUT') {
             if (global.localStorage['dataObj'] === undefined) {
+                res.status(404).end();
+            }
+            req.body = JSON.parse(req.body)
+            let timeHash = req.body['timeHash']
+            console.log(timeHash)
+            let dObj = JSON.parse(global.localStorage['dataObj']);
+            console.log('asdf')
+            if (dObj[timeHash] === undefined) {
+                console.log('asdf')
                 res.status(404).end()
             }
+            console.log('fdsa')
+            console.log(JSON.stringify(dObj[timeHash]))
+            res.status(200).json(JSON.stringify(dObj[timeHash])).end()
         }
     } catch {
         res.status(500).end()
     }
+
+    res.status(404).end()
 }

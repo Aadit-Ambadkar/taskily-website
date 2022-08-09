@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { kaReducer, Table } from 'ka-table';
 import { insertRow } from 'ka-table/actionCreators';
 import { deleteRow } from 'ka-table/actionCreators';
 import { DataType, EditingMode, InsertRowPosition } from 'ka-table/enums';
-import NonSSRWrapper from "../components/NoSSR";
+import NonSSRWrapper from "../../components/NoSSR";
 import { useRouter } from 'next/router'
-
-
+import metadata from '../../site-data';
 
 const dataArray = [{
     taskName: `Start Planning!`,
@@ -87,17 +86,48 @@ const DeleteRow = ({ dispatch, rowKeyValue }) => {
   );
 };
 
-const New = () => {
+const Edit = () => {
+    const router = useRouter();
+    const { thash } = router.query
+    if(!router.isReady) {
+        return <NonSSRWrapper></NonSSRWrapper>
+    }
   const [tableProps, changeTableProps] = useState(tablePropsInit);
   const dispatch = (action) => {
     changeTableProps((prevState) => kaReducer(prevState, action));
   };
 
-  const router = useRouter();
+  const [isLoading, setLoading] = useState(true);
 
+  useEffect(() => {
+    getTask();
+  }, []);
+    async function getTask () {
+    if (!router.isReady) {
+        return
+    }
+    const requestOptions = {
+        method: 'PUT',
+        body: JSON.stringify({'timeHash': thash})
+    }
+    try {
+        let res = await fetch(metadata['site-url']+'/api/server', requestOptions);
+        let data = await res.json()
+        const task = JSON.parse(data);
+        tableProps.data = task['body'];
+        maxValue = Math.max(...tableProps.data.map((i) => i.id));
+        setLoading(false);
+    } catch {
+        router.push(`/new`)
+        setLoading(false)
+    }
+  }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <NonSSRWrapper>
-      <div className="flex mt-24">
+      <div className="add-row-demo flex mt-24">
         <div className="m-auto flex flex-row items-center justify-center">
           <Table
             {...tableProps}
@@ -174,11 +204,9 @@ const New = () => {
             const requestOptions = {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(tableProps.data)
+              body: JSON.stringify({'timeHash': thash, 'body': tableProps.data})
             }
-            let res = await fetch('/api/server', requestOptions)
-            let body = await JSON.parse(await res.json())
-            router.push(`/edit/${body}`)
+            await fetch('/api/save', requestOptions)
           }}>
             <div className="className='bg-transparent hover:bg-accent-700 text-accent-800 font-semibold hover:text-white py-2 px-4 border border-accent-700 hover:border-transparent rounded duration-200'">
               SAVE
@@ -190,4 +218,4 @@ const New = () => {
   );
 };
 
-export default New;
+export default Edit;

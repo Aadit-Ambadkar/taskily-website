@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="description" content="Organize Your Day!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav names={['New Task', 'All Tasks']} links={['/new', '/all']}></Nav>
+      <Nav names={['New Task', 'All Tasks', 'Clear All Tasks']} links={['/new', '/all', '/clear']}></Nav>
       <Component {...pageProps} />
     </div>
   );
