@@ -1,5 +1,6 @@
 const metadata = {
-    "site-url": "http://localhost:3000",
+    "site-url": "taskily.vercel.app",
+    
 }
 
 export default metadata;
