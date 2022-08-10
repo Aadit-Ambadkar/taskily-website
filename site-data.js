@@ -1,5 +1,5 @@
 const metadata = {
-    "site-url": "taskily.vercel.app",
+    "site-url": "https://taskily.vercel.app",
     
 }
 
