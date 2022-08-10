@@ -116,7 +116,7 @@ const Edit = () => {
             let tp2 = JSON.parse(JSON.stringify(tableProps))
             tp2.data = task['body'];
             setTableProps(tp2)
-            maxValue = Math.max(...tableProps.data.map((i) => i.id));
+            maxValue = Math.max(...tp2.data.map((i) => i.id));
             setLoading(false)
             // setLoading(false);
         } catch {
