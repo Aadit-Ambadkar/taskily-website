@@ -87,44 +87,45 @@ const DeleteRow = ({ dispatch, rowKeyValue }) => {
 };
 
 const Edit = () => {
-    const router = useRouter();
-    const { thash } = router.query
-    if(!router.isReady) {
-        return <NonSSRWrapper></NonSSRWrapper>
-    }
-  const [tableProps, changeTableProps] = useState(tablePropsInit);
+  const router = useRouter();
+  const { thash } = router.query
+  const [tableProps, setTableProps] = useState(tablePropsInit);
   const dispatch = (action) => {
-    changeTableProps((prevState) => kaReducer(prevState, action));
+    setTableProps((prevState) => kaReducer(prevState, action));
   };
 
   const [isLoading, setLoading] = useState(true);
 
+
+  
+
   useEffect(() => {
-    getTask();
-  }, []);
-    async function getTask () {
-    if (!router.isReady) {
-        return
-    }
-    const requestOptions = {
-        method: 'PUT',
-        body: JSON.stringify({'timeHash': thash})
-    }
-    try {
-        let res = await fetch(metadata['site-url']+'/api/server', requestOptions);
-        let data = await res.json()
-        const task = JSON.parse(data);
-        tableProps.data = task['body'];
-        maxValue = Math.max(...tableProps.data.map((i) => i.id));
-        setLoading(false);
-    } catch {
-        router.push(`/new`)
-        setLoading(false)
+    if (isLoading)
+        getTask();
+  });
+  async function getTask () {
+    if (router.isReady) { 
+        const requestOptions = {
+            method: 'PUT',
+            body: JSON.stringify({'timeHash': thash})
+        }
+        try {
+            let res = await fetch(metadata['site-url']+'/api/server', requestOptions);
+            let data = await res.json()
+            const task = JSON.parse(data);
+            let tp2 = JSON.parse(JSON.stringify(tableProps))
+            tp2.data = task['body'];
+            setTableProps(tp2)
+            maxValue = Math.max(...tableProps.data.map((i) => i.id));
+            setLoading(false)
+            // setLoading(false);
+        } catch {
+            router.push(`/new`)
+            // setLoading(false)
+        }
     }
   }
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  
   return (
     <NonSSRWrapper>
       <div className="add-row-demo flex mt-24">
@@ -201,6 +202,7 @@ const Edit = () => {
         <div className="mt-16 flex flex-col items-center">
           <button onClick={async () => {
             // alert(JSON.stringify(tableProps.data))
+            // alert(thash)
             const requestOptions = {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },

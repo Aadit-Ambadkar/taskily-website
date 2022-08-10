@@ -30,15 +30,10 @@ export default function handler(req, res) {
             }
             req.body = JSON.parse(req.body)
             let timeHash = req.body['timeHash']
-            console.log(timeHash)
             let dObj = JSON.parse(global.localStorage['dataObj']);
-            console.log('asdf')
             if (dObj[timeHash] === undefined) {
-                console.log('asdf')
                 res.status(404).end()
             }
-            console.log('fdsa')
-            console.log(JSON.stringify(dObj[timeHash]))
             res.status(200).json(JSON.stringify(dObj[timeHash])).end()
         }
     } catch {

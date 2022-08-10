@@ -46,11 +46,11 @@ class All extends Component {
                                 // alert(this)
                                 let bod = thistasks[data];
                                 return (
-                                    <div className='bg-clip-text text-transparent font-bold bg-gradient-to-r to-accent-800 from-secondary-700 hover:text-secondary-700 duration-200 p-1 m-2'>
+                                    <div className='bg-clip-text text-transparent font-bold bg-gradient-to-r to-accent-800 from-secondary-700 hover:text-secondary-700 duration-200 p-1 m-2' key={index}>
                                         <a href={`/edit/${data}`} className='w-0'><p key = { index }>{ bod['date'] }</p></a>
                                     </div>
                                 )
-                            })} </div>) : (<div>No tasks created yet... don't forget to save</div>)
+                            })} </div>) : (<div>{`No tasks created yet... don't forget to save`}</div>)
                         }
                     </div>
                 </div>

@@ -10,8 +10,8 @@ function Logo(props) {
             </g>
             <defs>
                 <linearGradient id="b" x1="33.5" x2="33.5" y1="0" y2="178" gradientUnits="userSpaceOnUse">
-                <stop offset=".526" stop-color="#D05A5A"/>
-                <stop offset=".792" stop-color="#FADCB0"/>
+                <stop offset=".526" stopColor="#D05A5A"/>
+                <stop offset=".792" stopColor="#FADCB0"/>
                 </linearGradient>
             </defs>
         </svg>
