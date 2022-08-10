@@ -15,8 +15,8 @@ class All extends Component {
         const requestOptions = {
             method: 'GET'
         }
-        const res = await fetch(metadata['site-url']+'/api/server', requestOptions);
         try {
+            const res = await fetch(metadata['site-url']+'/api/server', requestOptions);
             const data = await res.json();
             return data;
         } catch {
