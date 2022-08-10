@@ -3,6 +3,7 @@ require('localstorage-polyfill')
 export default function handler(req, res) {
     try {
         if (req.method == 'POST') {
+            console.log(global.localStorage['dataObj'])
             if (global.localStorage['dataObj'] === undefined) {
                 res.status(404).end();
             }

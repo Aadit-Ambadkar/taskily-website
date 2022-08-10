@@ -4,7 +4,7 @@ export default function handler(req, res) {
     try {
         if (req.method == 'POST') {
             // global.localStorage.clear()
-
+            console.log(global.localStorage['dataObj'])
             if (global.localStorage['dataObj'] === undefined) {
                 global.localStorage['dataObj'] = JSON.stringify({})
             }
@@ -16,15 +16,18 @@ export default function handler(req, res) {
 
             res.status(200).json(JSON.stringify(timeHash)).end();
         } else if (req.method == 'GET') {
+            console.log(global.localStorage['dataObj'])
             if (global.localStorage['dataObj'] === undefined) {
                 res.status(404).end();
             }
             res.status(200).json(global.localStorage['dataObj']).end();
             
         } else if (req.method == 'PURGE') {
+            console.log(global.localStorage['dataObj'])
             global.localStorage.clear()
             res.status(200).end()
         } else if (req.method == 'PUT') {
+            console.log(global.localStorage['dataObj'])
             if (global.localStorage['dataObj'] === undefined) {
                 res.status(404).end();
             }
